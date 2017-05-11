@@ -27,7 +27,13 @@ new Vue({
         'movie-filter': {
             template: `<div id='movie-filter'>
                            <h2>Filter Results</h2>
-                       </div>`
+                           <check-filter></check-filter>
+                       </div>`,
+            components: {
+                'check-filter': {
+                    template: `<div>Filter</div>`
+                }
+            }
         }
     }
 });
