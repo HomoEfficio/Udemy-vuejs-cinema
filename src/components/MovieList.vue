@@ -1,6 +1,6 @@
 <template>
     <div id='movie-list'>
-        <div v-for="movie in filteredMovies" class="movie">{{ movie.title }}</div>
+        <div v-for="movie in filteredMovies" class="movie">{{ movie.movie.Title }}</div>
     </div>
 </template>
 
@@ -8,25 +8,13 @@
     import genres from '../util/genres';
 
     export default {
-        data: function() {  // Component는 여러 인스턴스로 생성되어 재사용 될 수 있으므로 data가 함수여야 한다.
-            return {
-                movies: [
-                    {
-                        title: 'Pulp Fiction', genres: genres.ACTION
-                    },
-                    {
-                        title: 'Home Alone', genres: genres.COMEDY
-                    },
-                    {
-                        title: 'Austin Powers', genres: genres.COMEDY
-                    },
-                ]
-            }
-        },
-        props: ['genres', 'time'],
+        props: ['genres', 'time', 'movies'],
         methods: {
             moviePassesGenreFilter(movie) {
-                return this.genres.find(genre => movie.genres === genre)
+                if (this.genres.length) {
+                    return this.genres.find(genre => movie.genres === genre)
+                }
+                return true;
             }
         },
         computed: {
